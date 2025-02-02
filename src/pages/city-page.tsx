@@ -41,6 +41,14 @@ export function CityPage() {
     }
   }, [units]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      weatherQuery.refetch();
+      forecastQuery.refetch();
+    }, 30000);
+
+    return () => clearInterval(interval); 
+  }, []);
 
   if (weatherQuery.error || forecastQuery.error) {
     return (
